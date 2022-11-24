@@ -1,6 +1,7 @@
 from django.db import models
 from autoslug import AutoSlugField
 from blog.models import KategoriModel, DateAbstractModel
+from account.models import CustomUserModel
 from ckeditor.fields import RichTextField
 
 class YazilarModel(DateAbstractModel):
@@ -9,7 +10,7 @@ class YazilarModel(DateAbstractModel):
     icerik = RichTextField()
     slug = AutoSlugField(populate_from = 'baslik', unique=True)
     kategoriler = models.ManyToManyField(KategoriModel, related_name='yazi')
-    yazar = models.ForeignKey('account.CustomUserModel', on_delete=models.CASCADE, related_name='yazilar')
+    yazar = models.ForeignKey(CustomUserModel, on_delete=models.CASCADE, related_name='yazilar')
 
     class Meta:
         verbose_name = 'Yazi'

@@ -1,8 +1,9 @@
 from django.db import models
 from blog.models import YazilarModel, DateAbstractModel
+from account.models import CustomUserModel
 
 class YorumModel(DateAbstractModel):
-    yazan = models.ForeignKey('account.CustomUserModel', on_delete=models.CASCADE, related_name='yorum')
+    yazan = models.ForeignKey(CustomUserModel, on_delete=models.CASCADE, related_name='yorum')
     yazi = models.ForeignKey(YazilarModel, on_delete=models.CASCADE, related_name='yorumlar')
     yorum = models.TextField()
 
